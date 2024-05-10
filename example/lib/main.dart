@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
       title: 'Scrollable Clean Calendar',
       theme: ThemeData(
         colorScheme: const ColorScheme(
-          primary: Color(0xFF3F51B5),
-          primaryContainer: Color(0xFF002984),
+          primary: Colors.brown,
+          primaryContainer: Colors.yellow,
           secondary: Color(0xFFD32F2F),
           secondaryContainer: Color(0xFF9A0007),
           surface: Color(0xFFDEE2E6),
@@ -65,6 +65,11 @@ class MyApp extends StatelessWidget {
           calendarController: calendarController,
           layout: Layout.BEAUTY,
           calendarCrossAxisSpacing: 0,
+          daySelectedBackgroundColor: Colors.green,
+          daySelectedBackgroundColorBetween: Colors.green,
+          dayRadius: 50,
+          dayDisableColor: Colors.red,
+          daySelectedTextColorBetween: Colors.white,
         ),
       ),
     );

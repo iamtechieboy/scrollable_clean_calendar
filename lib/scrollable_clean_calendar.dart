@@ -65,6 +65,9 @@ class ScrollableCleanCalendar extends StatefulWidget {
   /// The day selected background color that is between day selected edges
   final Color? daySelectedBackgroundColorBetween;
 
+  /// The day selected text color that is between day selected edges
+  final Color? daySelectedTextColorBetween;
+
   /// The day disable background color
   final Color? dayDisableBackgroundColor;
 
@@ -112,14 +115,11 @@ class ScrollableCleanCalendar extends StatefulWidget {
     this.dayAspectRatio,
     this.dayRadius = 6,
     required this.calendarController,
-  }) : assert(layout != null ||
-            (monthBuilder != null &&
-                weekdayBuilder != null &&
-                dayBuilder != null));
+    this.daySelectedTextColorBetween,
+  }) : assert(layout != null || (monthBuilder != null && weekdayBuilder != null && dayBuilder != null));
 
   @override
-  State<ScrollableCleanCalendar> createState() =>
-      _ScrollableCleanCalendarState();
+  State<ScrollableCleanCalendar> createState() => _ScrollableCleanCalendarState();
 }
 
 class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
@@ -147,10 +147,8 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
   Widget listViewCalendar() {
     return ListView.separated(
       controller: widget.scrollController,
-      padding: widget.padding ??
-          const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-      separatorBuilder: (_, __) =>
-          SizedBox(height: widget.spaceBetweenCalendars),
+      padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
+      separatorBuilder: (_, __) => SizedBox(height: widget.spaceBetweenCalendars),
       itemCount: widget.calendarController.months.length,
       itemBuilder: (context, index) {
         final month = widget.calendarController.months[index];
@@ -163,10 +161,8 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
   Widget scrollablePositionedListCalendar() {
     return ScrollablePositionedList.separated(
       itemScrollController: widget.calendarController.itemScrollController,
-      padding: widget.padding ??
-          const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-      separatorBuilder: (_, __) =>
-          SizedBox(height: widget.spaceBetweenCalendars),
+      padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
+      separatorBuilder: (_, __) => SizedBox(height: widget.spaceBetweenCalendars),
       itemCount: widget.calendarController.months.length,
       itemBuilder: (context, index) {
         final month = widget.calendarController.months[index];
@@ -215,13 +211,13 @@ class _ScrollableCleanCalendarState extends State<ScrollableCleanCalendar> {
                   dayBuilder: widget.dayBuilder,
                   backgroundColor: widget.dayBackgroundColor,
                   selectedBackgroundColor: widget.daySelectedBackgroundColor,
-                  selectedBackgroundColorBetween:
-                      widget.daySelectedBackgroundColorBetween,
+                  selectedBackgroundColorBetween: widget.daySelectedBackgroundColorBetween,
                   disableBackgroundColor: widget.dayDisableBackgroundColor,
                   dayDisableColor: widget.dayDisableColor,
                   radius: widget.dayRadius,
                   textStyle: widget.dayTextStyle,
                   aspectRatio: widget.dayAspectRatio,
+                  selectedTextColorBetween: widget.daySelectedTextColorBetween,
                 );
               },
             )
