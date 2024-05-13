@@ -232,7 +232,9 @@ class DaysWidget extends StatelessWidget {
           fontWeight: FontWeight.bold,
         );
 
-        if (values.selectedMinDate == values.selectedMaxDate) {
+        if (values.selectedMinDate != null &&
+            values.selectedMaxDate != null &&
+            values.selectedMinDate!.isSameDay(values.selectedMaxDate!)) {
           borderRadius = BorderRadius.circular(radius);
         } else if (values.selectedMinDate != null && values.day.isSameDay(values.selectedMinDate!)) {
           borderRadius = BorderRadius.only(

@@ -7,16 +7,23 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  final calendarController = CleanCalendarController(
-    minDate: DateTime.now(),
-    maxDate: DateTime.now().add(const Duration(days: 365)),
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  CleanCalendarController calendarController = CleanCalendarController(
+    minDate: DateTime.parse("2023-01-01"),
+    maxDate: DateTime.now(),
+    initialFocusDate: DateTime.now(),
+    initialDateSelected: DateTime.now(),
+    endDateSelected: DateTime.now(),
     onRangeSelected: (firstDate, secondDate) {},
     onDayTapped: (date) {},
     // readOnly: true,
     onPreviousMinDateTapped: (date) {},
     onAfterMaxDateTapped: (date) {},
-    weekdayStart: DateTime.monday,
     // initialFocusDate: DateTime(2023, 5),
     // initialDateSelected: DateTime(2022, 3, 15),
     // endDateSelected: DateTime(2022, 3, 20),
@@ -49,7 +56,51 @@ class MyApp extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                calendarController.clearSelectedDates();
+                /// Selection of yesterday
+                // calendarController = CleanCalendarController(
+                //   minDate: DateTime.parse("2023-01-01"),
+                //   maxDate: DateTime.now(),
+                //   initialFocusDate: DateTime.now().subtract(Duration(days: 1)),
+                //   initialDateSelected: DateTime.now().subtract(Duration(days: 1)),
+                //   endDateSelected: DateTime.now().subtract(Duration(days: 1)),
+                // );
+
+                /// Selection of week
+                // DateTime now = DateTime.now();
+                // DateTime lastMonday = now.subtract(Duration(days: now.weekday - 1));
+                // DateTime startOfLastWeek = lastMonday.subtract(Duration(days: 7));
+                // DateTime endOfLastWeek = lastMonday.subtract(Duration(days: 1));
+                // calendarController = CleanCalendarController(
+                //   minDate: DateTime.parse("2023-01-01"),
+                //   maxDate: DateTime.now(),
+                //   initialFocusDate: DateTime.now(),
+                //   initialDateSelected: startOfLastWeek,
+                //   endDateSelected: endOfLastWeek,
+                // );
+
+                /// Selection of month
+                // DateTime now = DateTime.now();
+                // DateTime firstDayOfMonth = DateTime(now.year, now.month, 1);
+                // calendarController = CleanCalendarController(
+                //   minDate: DateTime.parse("2023-01-01"),
+                //   maxDate: DateTime.now(),
+                //   initialFocusDate: DateTime.now(),
+                //   initialDateSelected: firstDayOfMonth,
+                //   endDateSelected: now,
+                // );
+
+                /// Selection of year
+                // DateTime now = DateTime.now();
+                // DateTime firstDayOfYear = DateTime(now.year, 1, 1);
+                // calendarController = CleanCalendarController(
+                //   minDate: DateTime.parse("2023-01-01"),
+                //   maxDate: DateTime.now(),
+                //   initialFocusDate: DateTime.now(),
+                //   initialDateSelected: firstDayOfYear,
+                //   endDateSelected: now,
+                // );
+
+                setState(() {});
               },
               icon: const Icon(Icons.clear),
             )
